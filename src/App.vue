@@ -1,15 +1,14 @@
 <script setup>
-const a = 10;
-let b = 20;
-const d = { a: 30 };
-let e = "<a href='/'>link</a>";
+const color = "blue";
+const id = "red";
 </script>
 
 <template>
-  <header>{{ a }}</header>
-  <main>{{ b }}</main>
-  <div v-html="e"></div>
-  <footer>{{ d.a }}</footer>
+  <header>Лого</header>
+  <!-- <main v-bind:class="color">Контент</main> -->
+  <main :class="color">Контент</main>
+  <!-- <div :id="id">Контент</div> -->
+  <div :id>Контент</div>
 </template>
 
 <style scoped></style>
