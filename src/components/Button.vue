@@ -1,7 +1,13 @@
 <script setup></script>
 
 <template>
-  <button class="button"><slot></slot></button>
+  <button class="button">
+    <div>
+      <slot name="icon"></slot>
+      <slot name="blue"></slot>
+    </div>
+    <slot />
+  </button>
 </template>
 
 <style scoped>
