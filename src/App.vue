@@ -1,14 +1,14 @@
 <script setup>
 const color = "blue";
 const id = "red";
+const isAdmin = true;
 </script>
 
 <template>
-  <header>Лого</header>
-  <!-- <main v-bind:class="color">Контент</main> -->
+  <header :class="`color-${id}`">Лого</header>
   <main :class="color">Контент</main>
-  <!-- <div :id="id">Контент</div> -->
   <div :id>Контент</div>
+  <footer>{{ isAdmin ? "Админ" : "Пользователь" }}</footer>
 </template>
 
 <style scoped></style>
