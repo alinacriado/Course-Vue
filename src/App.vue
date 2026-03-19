@@ -1,14 +1,5 @@
-<script setup>
-const color = "blue";
-const id = "red";
-const isAdmin = true;
-</script>
+<script setup></script>
 
-<template>
-  <header :class="`color-${id}`">Лого</header>
-  <main :class="color">Контент</main>
-  <div :id>Контент</div>
-  <footer>{{ isAdmin ? "Админ" : "Пользователь" }}</footer>
-</template>
+<template><div>Привет</div></template>
 
 <style scoped></style>
