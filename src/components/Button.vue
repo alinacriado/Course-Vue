@@ -1,5 +1,24 @@
 <script setup></script>
 
-<template><button>Кнопка</button></template>
+<template>
+  <button class="button"><slot></slot></button>
+</template>
 
-<style scoped></style>
+<style scoped>
+.button {
+  background: var(--gradient);
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  color: var(--color-primary);
+  font-family: var(--font);
+  font-weight: var(--fw-semi-bold);
+  font-size: 20px;
+  line-height: 120%;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: var(--gradient-inverted);
+}
+</style>
