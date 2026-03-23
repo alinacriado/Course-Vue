@@ -1,15 +1,21 @@
 <script setup>
 import BaseButton from "./components/BaseButton.vue";
 import StatisticsLine from "./components/StatisticsLine.vue";
+
+const statistics = {
+  label: "ВЛАЖНОСТЬ",
+  value: "90%",
+};
 </script>
 
 <template>
   <main>
     <div class="main">
       <BaseButton>Сохранить</BaseButton>
-      <StatisticsLine label="ВЛАЖНОСТЬ" stat="90%" />
-      <StatisticsLine label="ОСАДКИ" stat="0%" />
-      <StatisticsLine label="ВЕТЕР" stat="3 м/ч" />
+      <!-- <StatisticsLine :label="statistics.label" :value="statistics.value" /> -->
+      <StatisticsLine v-bind="statistics" />
+      <StatisticsLine label="ОСАДКИ" value="0%" />
+      <StatisticsLine label="ВЕТЕР" value="3 м/ч" />
     </div>
   </main>
 </template>

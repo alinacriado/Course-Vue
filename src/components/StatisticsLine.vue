@@ -1,14 +1,14 @@
 <script setup>
-const { label = "-", stat } = defineProps({
+const { label = "-", value } = defineProps({
   label: String,
-  stat: String,
+  value: String,
 });
 </script>
 
 <template>
   <div class="statistics">
     <div class="statistics__name">{{ label }}</div>
-    <div class="statistics__value">{{ stat }}</div>
+    <div class="statistics__value">{{ value }}</div>
   </div>
 </template>
 
