@@ -8,6 +8,9 @@
 
 <style scoped>
 .button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
   background: var(--gradient);
   padding: 14px;
   border: none;

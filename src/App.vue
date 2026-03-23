@@ -1,5 +1,5 @@
 <script setup>
-import BaseButton from "./components/BaseButton.vue";
+import CitySelect from "./components/CitySelect.vue";
 import StatisticsLine from "./components/StatisticsLine.vue";
 
 const statistics = {
@@ -11,11 +11,10 @@ const statistics = {
 <template>
   <main>
     <div class="main">
-      <BaseButton>Сохранить</BaseButton>
-      <!-- <StatisticsLine :label="statistics.label" :value="statistics.value" /> -->
       <StatisticsLine v-bind="statistics" />
       <StatisticsLine label="ОСАДКИ" value="0%" />
       <StatisticsLine label="ВЕТЕР" value="3 м/ч" />
+      <CitySelect />
     </div>
   </main>
 </template>

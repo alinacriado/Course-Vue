@@ -19,6 +19,6 @@ App
 ├── Statistics
 ├── Statistics
 |
-├── CitySelect
+└── CitySelect
 ├── Button
 └── Input
