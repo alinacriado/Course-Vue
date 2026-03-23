@@ -1,9 +1,14 @@
-<script setup></script>
+<script setup>
+const { label = "-", stat } = defineProps({
+  label: String,
+  stat: String,
+});
+</script>
 
 <template>
   <div class="statistics">
-    <div class="statistics__name">Влажность</div>
-    <div class="statistics__value">90%</div>
+    <div class="statistics__name">{{ label }}</div>
+    <div class="statistics__value">{{ stat }}</div>
   </div>
 </template>
 
@@ -23,6 +28,6 @@
 }
 
 .statistics__value {
-  font-weight: 500;
+  font-weight: 400;
 }
 </style>

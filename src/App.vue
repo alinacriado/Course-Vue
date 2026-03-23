@@ -7,7 +7,9 @@ import StatisticsLine from "./components/StatisticsLine.vue";
   <main>
     <div class="main">
       <BaseButton>Сохранить</BaseButton>
-      <StatisticsLine />
+      <StatisticsLine label="ВЛАЖНОСТЬ" stat="90%" />
+      <StatisticsLine label="ОСАДКИ" stat="0%" />
+      <StatisticsLine label="ВЕТЕР" stat="3 м/ч" />
     </div>
   </main>
 </template>
