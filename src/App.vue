@@ -1,17 +1,21 @@
 <script setup>
 import Button from "./components/Button.vue";
-const id = "blue";
 </script>
 
 <template>
-  <header></header>
-  <Button>
-    <!-- <template v-slot:icon>+</template> -->
-    <template #[id]>-</template>
-    <template #icon>+</template>
-    Сохранить</Button
-  >
-  <main></main>
+  <main>
+    <div class="main">
+      <Button>Сохранить</Button>
+    </div>
+  </main>
 </template>
 
-<style scoped></style>
+<style scoped>
+.main {
+  width: 944px;
+  height: 623px;
+  background-color: var(--color-bg-main);
+  border-radius: 25px;
+  padding: 50px 50px 60px;
+}
+</style>
