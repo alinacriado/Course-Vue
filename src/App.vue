@@ -1,11 +1,13 @@
 <script setup>
-import Button from "./components/Button.vue";
+import BaseButton from "./components/BaseButton.vue";
+import StatisticsLine from "./components/StatisticsLine.vue";
 </script>
 
 <template>
   <main>
     <div class="main">
-      <Button>Сохранить</Button>
+      <BaseButton>Сохранить</BaseButton>
+      <StatisticsLine />
     </div>
   </main>
 </template>
