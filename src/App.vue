@@ -1,44 +1,29 @@
 <script setup>
+import { ref } from "vue";
 import CitySelect from "./components/CitySelect.vue";
 import StatisticsLine from "./components/StatisticsLine.vue";
 
-const statistics = {
+const savedCity = ref("Moscow");
+
+let statistics = ref({
   label: "ВЛАЖНОСТЬ",
   value: "90%",
-};
+});
+let arr = ref([1]);
 
 function getCity(city) {
   console.log(city);
+  savedCity.value = city;
+  statistics.value.value = "20%";
+  arr.value.push(2);
 }
-
-const user = {
-  name: "Alina",
-};
-
-const handler = {
-  get(target, prop, receiver) {
-    console.log("get value");
-    // return "Vasia";
-    return target[prop];
-  },
-  set(obj, prop, value) {
-    if (prop == "name") {
-      console.log("set value");
-      obj[prop] = value;
-      return true;
-    }
-  },
-};
-
-const proxy = new Proxy(user, handler);
-console.log(proxy.name);
-proxy.name = "snjkasbc";
-console.log(proxy.name);
 </script>
 
 <template>
   <main>
     <div class="main">
+      {{ savedCity }}
+      {{ arr }}
       <StatisticsLine v-bind="statistics" />
       <StatisticsLine label="ОСАДКИ" value="0%" />
       <StatisticsLine label="ВЕТЕР" value="3 м/ч" />
