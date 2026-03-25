@@ -3,23 +3,21 @@ import IconLocation from "../icons/IconLocation.vue";
 import BaseButton from "./BaseButton.vue";
 import CityInput from "./CityInput.vue";
 
-function log() {
-  console.log("log function call");
-}
+const emit = defineEmits(["select-city"]);
 
-const logArrow = () => {
-  console.log("logArrow");
-};
+function select() {
+  emit("select-city", "London");
+}
 </script>
 
 <template>
   <div class="city-select">
-    <BaseButton @click="logArrow()">
+    <BaseButton @click="select()">
       <IconLocation />
       Изменить город
     </BaseButton>
     <CityInput class="city-select__input" />
-    <BaseButton @click="log()">Сохранить</BaseButton>
+    <BaseButton>Сохранить</BaseButton>
   </div>
 </template>
 

@@ -6,6 +6,10 @@ const statistics = {
   label: "ВЛАЖНОСТЬ",
   value: "90%",
 };
+
+function getCity(city) {
+  console.log(city);
+}
 </script>
 
 <template>
@@ -14,7 +18,7 @@ const statistics = {
       <StatisticsLine v-bind="statistics" />
       <StatisticsLine label="ОСАДКИ" value="0%" />
       <StatisticsLine label="ВЕТЕР" value="3 м/ч" />
-      <CitySelect />
+      <CitySelect @select-city="getCity" />
     </div>
   </main>
 </template>
