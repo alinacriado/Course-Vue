@@ -1,18 +1,24 @@
 <script setup>
-import { reactive, ref } from "vue";
+import { computed, ref } from "vue";
 import CitySelect from "./components/CitySelect.vue";
 import StatisticsLine from "./components/StatisticsLine.vue";
 
 let savedCity = ref("Moscow");
 
-let statistics = reactive({
-  label: "ВЛАЖНОСТЬ",
-  value: "90%",
+let data = ref({
+  humidity: 90,
+});
+
+const dataModified = computed(() => {
+  return {
+    label: "ВЛАЖНОСТЬ",
+    value: data.value.humidity + "%",
+  };
 });
 
 function getCity(city) {
   savedCity.value = city;
-  statistics.value = "20%";
+  data.value.humidity = 20;
 }
 </script>
 
@@ -20,7 +26,7 @@ function getCity(city) {
   <main>
     <div class="main" :class="savedCity">
       <div id="city">{{ savedCity }}</div>
-      <StatisticsLine v-bind="statistics" />
+      <StatisticsLine v-bind="dataModified" />
       <StatisticsLine label="ОСАДКИ" value="0%" />
       <StatisticsLine label="ВЕТЕР" value="3 м/ч" />
       <CitySelect @select-city="getCity" />
