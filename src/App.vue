@@ -1,5 +1,5 @@
 <script setup>
-import { nextTick, reactive, ref } from "vue";
+import { reactive, ref } from "vue";
 import CitySelect from "./components/CitySelect.vue";
 import StatisticsLine from "./components/StatisticsLine.vue";
 
@@ -10,18 +10,8 @@ let statistics = reactive({
   value: "90%",
 });
 
-// function getCity(city) {
-//   console.log(savedCity.value); // Moscow
-//   savedCity.value = city;
-//   console.log(savedCity.value); // London
-//   console.log(document.querySelector("#city").innerHTML); // Moscow
-//   statistics.value = "20%";
-// }
-async function getCity(city) {
+function getCity(city) {
   savedCity.value = city;
-  console.log(document.querySelector("#city").innerHTML); // Moscow
-  await nextTick();
-  console.log(document.querySelector("#city").innerHTML); // London
   statistics.value = "20%";
 }
 </script>
