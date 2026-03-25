@@ -1,21 +1,31 @@
 <script setup>
-import { ref } from "vue";
+import { reactive, ref } from "vue";
 import CitySelect from "./components/CitySelect.vue";
 import StatisticsLine from "./components/StatisticsLine.vue";
 
-const savedCity = ref("Moscow");
+let savedCity = ref("Moscow"); // да
+// let savedCity = reactive("Moscow"); нет
 
-let statistics = ref({
+let statistics = reactive({
   label: "ВЛАЖНОСТЬ",
   value: "90%",
 });
-let arr = ref([1]);
+// let { value } = reactive({ нельзя деструктурировать
+//   label: "ВЛАЖНОСТЬ",
+//   value: "90%",
+// });
+
+// value = "30%"; нельзя
+
+let arr = reactive([1]);
 
 function getCity(city) {
-  console.log(city);
   savedCity.value = city;
-  statistics.value.value = "20%";
-  arr.value.push(2);
+
+  statistics.value = "20%";
+  arr.push(2);
+
+  // value = "20%"; нельзя
 }
 </script>
 
