@@ -24,7 +24,7 @@ function getCity(city) {
 
 <template>
   <main>
-    <div class="main" :class="savedCity">
+    <div class="main">
       <div id="city">{{ savedCity }}</div>
       <StatisticsLine v-bind="dataModified" />
       <StatisticsLine label="ОСАДКИ" value="0%" />

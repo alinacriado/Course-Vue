@@ -10,9 +10,11 @@
 .button {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 9px;
   background: var(--gradient);
-  padding: 14px;
+  height: 53px;
+  padding: 10px 14px;
   border: none;
   border-radius: 10px;
   color: var(--color-primary);
@@ -20,6 +22,7 @@
   font-weight: var(--fw-semi-bold);
   font-size: 20px;
   line-height: 120%;
+  text-align: center;
   cursor: pointer;
 }
 
