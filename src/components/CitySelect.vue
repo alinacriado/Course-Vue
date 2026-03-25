@@ -3,10 +3,16 @@ import IconLocation from "../icons/IconLocation.vue";
 import BaseButton from "./BaseButton.vue";
 import CityInput from "./CityInput.vue";
 
-const emit = defineEmits(["select-city"]);
+const emit = defineEmits({
+  // selectCity: null,
+  selectCity(payload) {
+    console.log(`Validating payload: ${payload}`);
+    return payload;
+  },
+});
 
 function select() {
-  emit("select-city", "London");
+  emit("selectCity", "London");
 }
 </script>
 
