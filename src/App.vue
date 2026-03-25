@@ -10,6 +10,30 @@ const statistics = {
 function getCity(city) {
   console.log(city);
 }
+
+const user = {
+  name: "Alina",
+};
+
+const handler = {
+  get(target, prop, receiver) {
+    console.log("get value");
+    // return "Vasia";
+    return target[prop];
+  },
+  set(obj, prop, value) {
+    if (prop == "name") {
+      console.log("set value");
+      obj[prop] = value;
+      return true;
+    }
+  },
+};
+
+const proxy = new Proxy(user, handler);
+console.log(proxy.name);
+proxy.name = "snjkasbc";
+console.log(proxy.name);
 </script>
 
 <template>
