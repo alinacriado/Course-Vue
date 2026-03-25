@@ -23,15 +23,18 @@ function edit() {
 </script>
 
 <template>
-  <div class="city-select">
-    {{ isEditing }}
-    <BaseButton @click="edit()">
-      <IconLocation />
-      Изменить город
-    </BaseButton>
+  <div v-if="isEditing">
     <CityInput class="city-select__input" />
     <BaseButton @click="select()">Сохранить</BaseButton>
   </div>
+  <!-- <BaseButton v-else-if="!isEditing" @click="edit()">
+    <IconLocation />
+    Изменить город
+  </BaseButton> -->
+  <BaseButton v-else @click="edit()">
+    <IconLocation />
+    Изменить город
+  </BaseButton>
 </template>
 
 <style scoped></style>
