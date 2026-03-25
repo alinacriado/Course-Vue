@@ -23,15 +23,12 @@ function edit() {
 </script>
 
 <template>
-  <div v-if="isEditing">
+  <!-- накидывает display: none, перегружает DOM, но быстрее чем v-if -->
+  <div v-show="isEditing">
     <CityInput class="city-select__input" />
     <BaseButton @click="select()">Сохранить</BaseButton>
   </div>
-  <!-- <BaseButton v-else-if="!isEditing" @click="edit()">
-    <IconLocation />
-    Изменить город
-  </BaseButton> -->
-  <BaseButton v-else @click="edit()">
+  <BaseButton v-show="!isEditing" @click="edit()">
     <IconLocation />
     Изменить город
   </BaseButton>
