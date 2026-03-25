@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from "vue";
+import { nextTick, reactive, ref } from "vue";
 import CitySelect from "./components/CitySelect.vue";
 import StatisticsLine from "./components/StatisticsLine.vue";
 
@@ -10,43 +10,26 @@ let statistics = reactive({
   value: "90%",
 });
 
-// есть unwrap
-const counter = reactive({
-  count: ref(0),
-});
-counter.count++; // для ref не нужен доп .value, это автоматический unwrap
-console.log(counter.count);
-
-// нет unwrap
-const map = reactive(new Map([["count", ref(0)]]));
-map.get("count").value;
-
-// нет unwrap
-const arr = reactive([ref(0)]);
-arr[0].value;
-
-const obj = { id: ref(1) };
-const id = obj.id;
-
-function getCity(city) {
-  savedCity.value = city; // для ref нужен доп .value
-  statistics.value = "20%"; // для reactive не нужен доп .value
+// function getCity(city) {
+//   console.log(savedCity.value); // Moscow
+//   savedCity.value = city;
+//   console.log(savedCity.value); // London
+//   console.log(document.querySelector("#city").innerHTML); // Moscow
+//   statistics.value = "20%";
+// }
+async function getCity(city) {
+  savedCity.value = city;
+  console.log(document.querySelector("#city").innerHTML); // Moscow
+  await nextTick();
+  console.log(document.querySelector("#city").innerHTML); // London
+  statistics.value = "20%";
 }
-
-// автоматический unwrap работает только для reactive объектов и в шаблоне
 </script>
 
 <template>
   <main>
     <div class="main" :class="savedCity">
-      <!-- // автоматический unwrap -->
-      {{ savedCity + "sn" }}
-      {{ obj.id }}
-      <!-- при вложенности и взаимодействии надо value -->
-      {{ obj.id.value + 1 }}
-      <!-- или -->
-      {{ id + 1 }}
-
+      <div id="city">{{ savedCity }}</div>
       <StatisticsLine v-bind="statistics" />
       <StatisticsLine label="ОСАДКИ" value="0%" />
       <StatisticsLine label="ВЕТЕР" value="3 м/ч" />
