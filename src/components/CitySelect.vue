@@ -27,7 +27,7 @@ function edit() {
   <div class="city-select">
     {{ city }}
     <div v-if="isEditing" class="city-select__input">
-      <CityInput v-model="city" />
+      <CityInput v-model="city" v-model:additional="city" />
       <BaseButton @click="select()">Сохранить</BaseButton>
     </div>
     <BaseButton v-else class="button__edit" @click="edit()">
