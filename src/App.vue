@@ -20,11 +20,25 @@ function getCity(city) {
   savedCity.value = city;
   data.value.humidity = 20;
 }
+
+const arr = ref(["anton", "vasia", "anna"]);
+const obj = ref({
+  name: "anton",
+  age: 18,
+});
 </script>
 
 <template>
   <main>
     <div class="main">
+      <ul>
+        <li v-for="(item, index) in arr" :key="item">{{ index }} {{ item }}</li>
+      </ul>
+      <ul>
+        <li v-for="(value, key, index) in obj" :key="key">
+          {{ value }}{{ key }}{{ index }}
+        </li>
+      </ul>
       <div id="city">{{ savedCity }}</div>
       <StatisticsLine v-bind="dataModified" />
       <StatisticsLine label="ОСАДКИ" value="0%" />
