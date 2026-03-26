@@ -7,42 +7,36 @@ let savedCity = ref("Moscow");
 
 let data = ref({
   humidity: 90,
+  rainfall: 0,
+  wind: 3,
 });
 
 const dataModified = computed(() => {
-  return {
-    label: "ВЛАЖНОСТЬ",
-    value: data.value.humidity + "%",
-  };
+  return [
+    {
+      label: "ВЛАЖНОСТЬ",
+      value: data.value.humidity + "%",
+    },
+    { label: "ОСАДКИ", value: data.value.rainfall + "%" },
+    { label: "ВЕТЕР", value: data.value.wind + " км/ч" },
+  ];
 });
 
 function getCity(city) {
   savedCity.value = city;
   data.value.humidity = 20;
 }
-
-const arr = ref(["anton", "vasia", "anna"]);
-const obj = ref({
-  name: "anton",
-  age: 18,
-});
 </script>
 
 <template>
   <main>
     <div class="main">
-      <ul>
-        <li v-for="(item, index) in arr" :key="item">{{ index }} {{ item }}</li>
-      </ul>
-      <ul>
-        <li v-for="(value, key, index) in obj" :key="key">
-          {{ value }}{{ key }}{{ index }}
+      <div id="city">{{ savedCity }}</div>
+      <ul class="statistics">
+        <li v-for="(item, index) in dataModified" :key="index">
+          <StatisticsLine v-bind="item" />
         </li>
       </ul>
-      <div id="city">{{ savedCity }}</div>
-      <StatisticsLine v-bind="dataModified" />
-      <StatisticsLine label="ОСАДКИ" value="0%" />
-      <StatisticsLine label="ВЕТЕР" value="3 м/ч" />
       <CitySelect @select-city="getCity" />
     </div>
   </main>
