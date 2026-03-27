@@ -1,15 +1,5 @@
 <script setup>
-import { onMounted, onUnmounted } from "vue";
-
 const data = defineModel({ type: String, required: true });
-
-onMounted(() => {
-  console.log("input is mounted");
-});
-
-onUnmounted(() => {
-  console.log("input is unmounted"); // при v-if содержимое создается и удаляется полностью, а при v-show просто скрывается
-});
 </script>
 
 <template>
