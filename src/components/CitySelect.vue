@@ -1,8 +1,20 @@
 <script setup>
-import { ref } from "vue";
+import { onBeforeMount, onMounted, onUpdated, ref } from "vue";
 import IconLocation from "../icons/IconLocation.vue";
 import BaseButton from "./BaseButton.vue";
 import CityInput from "./CityInput.vue";
+
+onBeforeMount(() => {
+  console.log("citySelect before mount");
+});
+
+onMounted(() => {
+  console.log("citySelect is Mounted");
+});
+
+onUpdated(() => {
+  console.log("city select updated");
+});
 
 const emit = defineEmits({
   selectCity(payload) {
@@ -27,7 +39,7 @@ function edit() {
   <div class="city-select">
     {{ city }}
     <div v-if="isEditing" class="city-select__input">
-      <CityInput v-model="city" v-model:additional="city" />
+      <CityInput v-model="city" />
       <BaseButton @click="select()">Сохранить</BaseButton>
     </div>
     <BaseButton v-else class="button__edit" @click="edit()">
