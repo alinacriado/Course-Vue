@@ -30,7 +30,7 @@ function edit() {
 <template>
   <div class="city-select">
     <div v-if="isEditing" class="city-select__input">
-      <CityInput v-model="city" />
+      <CityInput v-model="city" @keyup.enter="select()" />
       <BaseButton @click="select()">Сохранить</BaseButton>
     </div>
     <BaseButton v-else class="button__edit" @click="edit()">
