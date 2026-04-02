@@ -4,6 +4,7 @@ import CitySelect from "./components/CitySelect.vue";
 import StatisticsLine from "./components/StatisticsLine.vue";
 import ErrorLine from "./components/ErrorLine.vue";
 import { useFetchWeatherByCity } from "./composables";
+import DaysList from "./components/DaysList.vue";
 
 const { data, errorMessage, fetchWeatherByCity } = useFetchWeatherByCity();
 
@@ -11,6 +12,8 @@ const weatherStatisticsForToday = computed(() => {
   if (!data.value) {
     return [];
   }
+
+  console.log(data.value);
 
   return [
     {
@@ -30,7 +33,7 @@ const weatherStatisticsForToday = computed(() => {
   <main>
     <div class="main">
       <ErrorLine v-if="errorMessage" :error="errorMessage" />
-      <ul class="statistics">
+      <ul class="statistics__list">
         <li
           v-for="(weatherStatistics, index) in weatherStatisticsForToday"
           :key="index"
@@ -38,6 +41,7 @@ const weatherStatisticsForToday = computed(() => {
           <StatisticsLine v-bind="weatherStatistics" />
         </li>
       </ul>
+      <DaysList :forecast="data?.forecast?.forecastday || []" />
       <CitySelect @select-city="fetchWeatherByCity" />
     </div>
   </main>
@@ -47,9 +51,15 @@ const weatherStatisticsForToday = computed(() => {
 .main {
   position: relative;
   width: 944px;
-  height: 623px;
+  min-height: 623px;
   background-color: var(--color-bg-main);
   border-radius: 25px;
   padding: 50px 50px 60px;
+}
+
+.statistics__list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 </style>
