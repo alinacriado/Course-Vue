@@ -25,12 +25,16 @@ function select() {
 function edit() {
   isEditing.value = true;
 }
+
+// const vFocus = {
+//   mounted: (element) => element.focus(),
+// };
 </script>
 
 <template>
   <div class="city-select">
     <div v-if="isEditing" class="city-select__input">
-      <CityInput v-model="city" @keyup.enter="select()" />
+      <CityInput v-model="city" v-focus @keyup.enter="select()" />
       <BaseButton @click="select()">Сохранить</BaseButton>
     </div>
     <BaseButton v-else class="button__edit" @click="edit()">

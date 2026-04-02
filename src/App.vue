@@ -13,7 +13,7 @@ const weatherStatisticsForToday = computed(() => {
     return [];
   }
 
-  console.log(data.value);
+  // console.log(data.value);
 
   return [
     {
