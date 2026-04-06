@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref } from "vue";
+import { inject, onMounted, ref } from "vue";
 import IconLocation from "../icons/IconLocation.vue";
 import BaseButton from "./BaseButton.vue";
 import CityInput from "./CityInput.vue";
@@ -9,6 +9,9 @@ const emit = defineEmits({
     return payload;
   },
 });
+
+// const value = inject("num");
+// console.log(value);
 
 let city = ref("Нью Йорк");
 let isEditing = ref(false);

@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref } from "vue";
+import { computed, provide, ref } from "vue";
 import DayCard from "./DayCard.vue";
 import { getWeekDay, getWeatherConditionIcon } from "../utils";
 
@@ -8,6 +8,7 @@ const { forecast } = defineProps({
 });
 
 const activeIndex = ref(0);
+provide("num", activeIndex);
 
 const weatherConditions = computed(() => {
   return forecast.map((dayForecast) => ({

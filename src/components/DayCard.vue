@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from "vue";
+import { computed, inject } from "vue";
 
 const { icon, weekDay, temperature, isActive } = defineProps({
   icon: [Object, Function],
@@ -7,6 +7,10 @@ const { icon, weekDay, temperature, isActive } = defineProps({
   temperature: Number,
   isActive: Boolean,
 });
+
+const value = inject("num");
+console.log(value.value);
+value.value = 1;
 
 const iconColor = computed(() => {
   return isActive ? "var(--color-primary-inverted)" : "var(--color-primary)";

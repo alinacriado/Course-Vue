@@ -1,5 +1,5 @@
 <script setup>
-import { computed } from "vue";
+import { computed, provide } from "vue";
 import CitySelect from "./components/CitySelect.vue";
 import StatisticsLine from "./components/StatisticsLine.vue";
 import ErrorLine from "./components/ErrorLine.vue";
@@ -8,6 +8,8 @@ import DaysList from "./components/DaysList.vue";
 import DayPanel from "./components/DayPanel.vue";
 
 const { data, errorMessage, fetchWeatherByCity } = useFetchWeatherByCity();
+
+// provide("num", 1);
 
 const weatherStatisticsForToday = computed(() => {
   if (!data.value) {
