@@ -10,8 +10,8 @@ const emit = defineEmits({
   },
 });
 
-let city = ref("Нью Йорк");
-let isEditing = ref(false);
+const city = ref("Нью Йорк");
+const isEditing = ref(false);
 
 onMounted(() => {
   emit("selectCity", city.value);

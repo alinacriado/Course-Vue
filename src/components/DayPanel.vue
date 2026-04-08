@@ -22,16 +22,24 @@ const forecastSource = computed(() => {
 
 const dayInfo = computed(() => {
   if (!dayForecast.value || !weatherData) {
-    return {};
+    return {
+      weekday: "-",
+      date: "-",
+      location: "-",
+      icon: null,
+      temperature: "-",
+      condition: "-",
+    };
   }
 
   return {
-    weekday: getWeekDay(dayForecast.value.date, "long"),
-    date: getFormatedDate(dayForecast.value.date),
-    location: weatherData.location.name,
-    icon: getWeatherConditionIcon(forecastSource.value.condition.code),
-    temperature: forecastSource.value.temp_c ?? forecastSource.value?.avgtemp_c,
-    condition: forecastSource.value.condition.text,
+    weekday: getWeekDay(dayForecast.value.date, "long") ?? "-",
+    date: getFormatedDate(dayForecast.value.date) ?? "-",
+    location: weatherData.location.name ?? "-",
+    icon: getWeatherConditionIcon(forecastSource.value.condition.code) ?? "-",
+    temperature:
+      forecastSource.value.temp_c ?? forecastSource.value?.avgtemp_c ?? "-",
+    condition: forecastSource.value.condition.text ?? "-",
   };
 });
 </script>
