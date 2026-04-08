@@ -1,5 +1,5 @@
 <script setup>
-import { inject, onMounted, ref } from "vue";
+import { onMounted, ref } from "vue";
 import IconLocation from "../icons/IconLocation.vue";
 import BaseButton from "./BaseButton.vue";
 import CityInput from "./CityInput.vue";
@@ -9,9 +9,6 @@ const emit = defineEmits({
     return payload;
   },
 });
-
-// const value = inject("num");
-// console.log(value);
 
 let city = ref("Нью Йорк");
 let isEditing = ref(false);
@@ -29,9 +26,9 @@ function edit() {
   isEditing.value = true;
 }
 
-// const vFocus = {
-//   mounted: (element) => element.focus(),
-// };
+const vFocus = {
+  mounted: (element) => element.focus(),
+};
 </script>
 
 <template>
@@ -49,7 +46,7 @@ function edit() {
 
 <style scoped>
 .city-select {
-  margin-top: 70px;
+  margin-top: auto;
 }
 
 .city-select__input {

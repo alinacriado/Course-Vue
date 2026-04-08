@@ -1,19 +1,19 @@
 <script setup>
-import { computed, provide, ref } from "vue";
+import { computed } from "vue";
 import DayCard from "./DayCard.vue";
 import { getWeekDay, getWeatherConditionIcon } from "../utils";
 
-const { forecast } = defineProps({
+const { forecast, activeIndex } = defineProps({
   forecast: Array,
+  activeIndex: Number,
 });
 
-const activeIndex = ref(0);
-provide("num", activeIndex);
+const emit = defineEmits(["select-index"]);
 
 const weatherConditions = computed(() => {
   return forecast.map((dayForecast) => ({
     icon: getWeatherConditionIcon(dayForecast.day.condition.code),
-    weekDay: getWeekDay(dayForecast.date),
+    weekDay: getWeekDay(dayForecast.date, "short"),
     temperature: dayForecast.day.avgtemp_c,
   }));
 });
@@ -26,7 +26,7 @@ const weatherConditions = computed(() => {
       :key="index"
       v-bind="weatherCondition"
       :is-active="activeIndex == index"
-      @click="() => (activeIndex = index)"
+      @click="() => emit('select-index', index)"
     />
   </div>
 </template>

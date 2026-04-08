@@ -1,18 +1,57 @@
 <script setup>
+import { computed } from "vue";
 import IconLocation from "../icons/IconLocation.vue";
-import IconSun from "../icons/weather/IconSun.vue";
+import { getFormatedDate, getWeatherConditionIcon, getWeekDay } from "../utils";
+
+const { weatherData, activeIndex } = defineProps({
+  weatherData: Object,
+  activeIndex: Number,
+});
+
+const dayForecast = computed(() => {
+  return weatherData?.forecast?.forecastday[activeIndex] || null;
+});
+
+const isToday = computed(() => {
+  return activeIndex === 0;
+});
+
+const forecastSource = computed(() => {
+  return isToday.value ? weatherData.current : dayForecast.value.day;
+});
+
+const dayInfo = computed(() => {
+  if (!dayForecast.value || !weatherData) {
+    return {};
+  }
+
+  return {
+    weekday: getWeekDay(dayForecast.value.date, "long"),
+    date: getFormatedDate(dayForecast.value.date),
+    location: weatherData.location.name,
+    icon: getWeatherConditionIcon(forecastSource.value.condition.code),
+    temperature: forecastSource.value.temp_c ?? forecastSource.value?.avgtemp_c,
+    condition: forecastSource.value.condition.text,
+  };
+});
 </script>
+
 <template>
   <div class="day-panel">
     <div class="day-panel__header">
-      <div class="day-panel__weekday">Вторник</div>
-      <div class="day-panel__date">20 июня 2025</div>
-      <div class="day-panel__location"><IconLocation />Москва</div>
+      <div class="day-panel__weekday">{{ dayInfo.weekday }}</div>
+      <div class="day-panel__date">{{ dayInfo.date }}</div>
+      <div class="day-panel__location">
+        <IconLocation class="day-panel__location-icon" />
+        {{ dayInfo.location }}
+      </div>
     </div>
     <div class="day-panel__forecast">
-      <IconSun class="day-panel__icon" />
-      <div class="day-panel__temperature">29 °C</div>
-      <div class="day-panel__condition">Солнечно</div>
+      <component :is="dayInfo.icon" class="day-panel__icon" />
+      <div class="day-panel__temperature">
+        {{ dayInfo.temperature + " °C" }}
+      </div>
+      <div class="day-panel__condition">{{ dayInfo.condition }}</div>
     </div>
   </div>
 </template>
@@ -73,10 +112,16 @@ import IconSun from "../icons/weather/IconSun.vue";
 
 .day-panel__location {
   display: flex;
+  align-items: center;
   gap: 8px;
   font-size: 20px;
   line-height: 120%;
   font-weight: var(--fw-semi-bold);
+}
+
+.day-panel__location-icon {
+  width: 27px;
+  height: 27px;
 }
 
 .day-panel__forecast {

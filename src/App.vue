@@ -1,5 +1,5 @@
 <script setup>
-import { computed, provide } from "vue";
+import { computed, ref } from "vue";
 import CitySelect from "./components/CitySelect.vue";
 import StatisticsLine from "./components/StatisticsLine.vue";
 import ErrorLine from "./components/ErrorLine.vue";
@@ -9,14 +9,14 @@ import DayPanel from "./components/DayPanel.vue";
 
 const { data, errorMessage, fetchWeatherByCity } = useFetchWeatherByCity();
 
-// provide("num", 1);
+const activeIndex = ref(0);
 
 const weatherStatisticsForToday = computed(() => {
   if (!data.value) {
     return [];
   }
 
-  // console.log(data.value);
+  console.log(data.value);
 
   return [
     {
@@ -35,7 +35,7 @@ const weatherStatisticsForToday = computed(() => {
 <template>
   <main>
     <div class="main">
-      <DayPanel />
+      <DayPanel :weatherData="data || {}" :active-index="activeIndex" />
       <div class="navigation-panel">
         <ErrorLine v-if="errorMessage" :error="errorMessage" />
         <ul class="statistics__list">
@@ -46,7 +46,11 @@ const weatherStatisticsForToday = computed(() => {
             <StatisticsLine v-bind="weatherStatistics" />
           </li>
         </ul>
-        <DaysList :forecast="data?.forecast?.forecastday || []" />
+        <DaysList
+          :forecast="data?.forecast?.forecastday || []"
+          :active-index="activeIndex"
+          @select-index="(index) => (activeIndex = index)"
+        />
         <CitySelect @select-city="fetchWeatherByCity" />
       </div>
     </div>
@@ -64,6 +68,9 @@ const weatherStatisticsForToday = computed(() => {
 }
 
 .navigation-panel {
+  display: flex;
+  flex-direction: column;
+  position: relative;
   padding: 50px 50px 60px;
   width: 520px;
 }
